@@ -11,6 +11,7 @@ dependencies = [
     "seaborn",
     "jinja2",
     "scipy",
+    "typer",
     "numpy"
 ]
 description = "Software pipeline for the analysis of genome editing outcomes from deep sequencing data"
@@ -42,6 +43,7 @@ CRISPRessoWGS = "CRISPResso2.CRISPRessoWGSCORE:main"
 CRISPRessoCompare = "CRISPResso2.CRISPRessoCompareCORE:main"
 CRISPRessoPooledWGSCompare = "CRISPResso2.CRISPRessoPooledWGSCompareCORE:main"
 CRISPRessoAggregate = "CRISPResso2.CRISPRessoAggregateCORE:main"
+CRISPRessoLite = "CRISPResso2.CRISPRessoLite:main"
 
 [project.urls]
 Homepage = "https://github.com/pinellolab/CRISPResso2"

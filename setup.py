@@ -41,6 +41,7 @@ def main():
     ext_modules = [
             Extension("CRISPResso2.CRISPRessoCOREResources", ["CRISPResso2/CRISPRessoCOREResources" + ext], include_dirs=numpy_include_dir, extra_compile_args=['-w','-Ofast'] ),
             Extension("CRISPResso2.CRISPResso2Align", ["CRISPResso2/CRISPResso2Align" + ext], include_dirs=numpy_include_dir, extra_compile_args=['-w','-Ofast'] ),
+            Extension("CRISPResso2.alignment_tags", ["CRISPResso2/alignment_tags" + ext], extra_compile_args=['-w','-Ofast'] ),
                        ]
     if has_cython:
         from Cython.Build import cythonize
@@ -60,6 +61,7 @@ def main():
               call_root+'Compare = CRISPResso2.CRISPRessoCompareCORE:main',
               call_root+'PooledWGSCompare = CRISPResso2.CRISPRessoPooledWGSCompareCORE:main',
               call_root+'Aggregate = CRISPResso2.CRISPRessoAggregateCORE:main',
+              call_root+'Lite = CRISPResso2.CRISPRessoLite:main',
               ]
           }
 
@@ -90,8 +92,8 @@ def main():
               'seaborn', # '>0.7.1,<0.10',
               'jinja2',
               'scipy',
+              'typer',
               'numpy',
-              'upsetplot',
               ],
           cmdclass = command_classes,
           ext_modules = ext_modules
