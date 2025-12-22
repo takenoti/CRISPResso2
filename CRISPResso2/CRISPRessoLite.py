@@ -1,4 +1,4 @@
-from CRISPResso2 import CRISPResso2Align, alignment_tags
+from CRISPResso2 import CRISPResso2Align, CRISPRessoShared, alignment_tags
 from typing_extensions import Annotated
 import functools
 import numpy
@@ -67,7 +67,7 @@ def process_reads(
         )
 
         read_rev, amplicon_rev, score_rev = CRISPResso2Align.global_align(
-            read_sequence,
+            CRISPRessoShared.reverse_complement(read_sequence),
             amplicon_sequence,
             matrix=alignment_matrix,
             gap_incentive=gap_incentive,
