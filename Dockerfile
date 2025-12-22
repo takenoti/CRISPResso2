@@ -41,6 +41,7 @@ RUN pip install . \
   && CRISPRessoBatch -h \
   && CRISPRessoPooled -h \
   && CRISPRessoWGS -h \
-  && CRISPRessoCompare -h
+  && CRISPRessoCompare -h \
+  && CRISPRessoLite --help
 
 ENTRYPOINT []
