@@ -44,4 +44,4 @@ RUN pip install . \
   && CRISPRessoCompare -h \
   && CRISPRessoLite --help
 
-ENTRYPOINT []
+ENTRYPOINT ["micromamba", "run", "-n", "base"]
