@@ -57,17 +57,29 @@ def process_reads(
         cut_site_offset: int,  # zero-based
         read_sequence: str,
     ):
-        aligned_read_sequence, aligned_amplicon, alignment_score = (
-            CRISPResso2Align.global_align(
-                read_sequence,
-                amplicon_sequence,
-                matrix=alignment_matrix,
-                gap_incentive=gap_incentive,
-                gap_open=gap_open_score,
-                gap_extend=gap_extend_score,
-            )
+        read_fwd, amplicon_fwd, score_fwd = CRISPResso2Align.global_align(
+            read_sequence,
+            amplicon_sequence,
+            matrix=alignment_matrix,
+            gap_incentive=gap_incentive,
+            gap_open=gap_open_score,
+            gap_extend=gap_extend_score,
         )
 
+        read_rev, amplicon_rev, score_rev = CRISPResso2Align.global_align(
+            read_sequence,
+            amplicon_sequence,
+            matrix=alignment_matrix,
+            gap_incentive=gap_incentive,
+            gap_open=gap_open_score,
+            gap_extend=gap_extend_score,
+        )
+
+        aligned_read_sequence, aligned_amplicon, alignment_score = (
+            (read_fwd, amplicon_fwd, score_fwd)
+            if score_fwd >= score_rev
+            else (read_rev, amplicon_rev, score_rev)
+        )
         return (
             alignment_tags.aligned_crispresso_to_cs_tag(
                 aligned_amplicon,
